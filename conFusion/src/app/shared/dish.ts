@@ -1,5 +1,4 @@
-export class Dish
-{
+export class Dish {
   name: string;
   image: string;
   category: string;
