@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Comment} from '../shared/comment';
 
 const DISH = {
   name: 'Uthappizza',
@@ -50,6 +51,7 @@ const DISH = {
 export class DishdetailComponent implements OnInit {
 
   dish = DISH;
+  comments: Comment[] = this.dish.comments;
   constructor() { }
 
   ngOnInit() {
