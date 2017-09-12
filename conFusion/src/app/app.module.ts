@@ -21,6 +21,7 @@ import { PromotionService } from './services/promotion.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import {LeaderService} from "./services/leader.service";
 import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +40,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
-
+    AppRoutingModule,
   ],
   providers: [ DishService, PromotionService, LeaderService ],
   entryComponents:[ LoginComponent ],
