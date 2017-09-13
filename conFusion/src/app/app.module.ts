@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import 'hammerjs';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ DishService, PromotionService, LeaderService ],
   entryComponents:[ LoginComponent ],
