@@ -42,6 +42,7 @@
 
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
       <p>
+
         <md-input-container class="half-width"
                             dividerColor="{{(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').untouched) ? 'warn' : 'primary'}}">
           <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -50,6 +51,7 @@
                   firstname is required</span>
           </md-hint>
         </md-input-container>
+
         <md-input-container class="half-width"
                             dividerColor="{{(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').untouched) ? 'warn' : 'primary'}}">
           <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
@@ -59,15 +61,17 @@
           </md-hint>
         </md-input-container>
       </p>
+
       <p>
         <md-input-container class="half-width"
                             dividerColor="{{(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').untouched) ? 'warn' : 'primary'}}">
-          <input mdInput formControlName="telnum" placeholder="Tel. Number" type="tel" required>
+          <input mdInput formControlName="telnum" placeholder="Tel.number" type="tel"  required>
           <md-hint>
                 <span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').untouched)">
                   Tel. number is required</span>
           </md-hint>
         </md-input-container>
+
         <md-input-container class="half-width"
                             dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').untouched) ? 'warn' : 'primary'}}">
           <input mdInput formControlName="email" placeholder="Email" type="email" required>
