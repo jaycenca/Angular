@@ -8,6 +8,7 @@ import { DishService } from '../services/dish.service';
 import { DISHES } from '../shared/dishes';
 
 import 'rxjs/add/operator/switchMap';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-dishdetail',
@@ -23,9 +24,33 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
 
+  feedbackForm: FormGroup;
+  Comment: Comment;
+
+  formErrors = {
+    'name' : '',
+    'comment' : '',
+  }
+
+  validationMessages = {
+    'name': {
+      'required' : 'Name is required',
+      'minlength' : 'Name must be at least 2 characters long. '
+    },
+
+    'comment': {
+      'required' : 'Comment is require',
+      'minlength' : 'Comment must be at least 2 characters long.'
+    },
+
+  }
 
 
-  constructor(private dishservice: DishService, private route: ActivatedRoute, private location: Location) { }
+
+
+  constructor(private dishservice: DishService, private route: ActivatedRoute, private location: Location, private fb: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
     this.dishservice.getDishIds()
@@ -41,6 +66,12 @@ export class DishdetailComponent implements OnInit {
 
   }
 
+  createForm() {
+    this.feedbackForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      comment: ['', [Validators.required, Validators.minLength(2)]],
+    })
+  }
   setPrevNext(dishId: number) {
     let index = this.dishIds.indexOf(dishId);
 
@@ -57,6 +88,9 @@ export class DishdetailComponent implements OnInit {
   pressLike(): void {
 
   }
+
+
+
 
 
 

@@ -36,28 +36,47 @@
     </div>
 
     <div fxFlex="50" *ngIf="dish">
-        <md-card>
-          <md-card-header>
-            <md-card-title>
-              <h3>Comments</h3>
-            </md-card-title>
-          </md-card-header>
+      <md-card>
+        <md-card-header>
+          <md-card-title>
+            <h3>Comments</h3>
+          </md-card-title>
+        </md-card-header>
 
-          <md-card-content>
-            <md-list>
-              <p *ngFor="let comment of dish.comments">
-                {{comment.comment}}<br>
-                {{comment.rating}} Stars <br>
-                -- {{comment.author}} {{comment.date | date:mediumDate }}
-              </p>
-            </md-list>
-          </md-card-content>
-        </md-card>
+        <md-card-content>
+          <md-list>
+            <p *ngFor="let comment of dish.comments">
+              {{comment.comment}}<br>
+              {{comment.rating}} Stars <br>
+              -- {{comment.author}} {{comment.date | date:mediumDate }}
+            </p>
+          </md-list>
+        </md-card-content>
+      </md-card>
+
+      <md-card>
+        <form novalidate [formGroup]="feedbackForm">
+          <p>
+            <md-input-container class="full-width"
+                                dividerColor="{{formErrors.name}} ? 'warn' : 'primary'}}">
+              <input mdInput formControlName="name" placeholder="Name" type="text" required>
+              <md-hint>
+                <span [hidden]="!(formErrors.name)"></span>
+              </md-hint>
+            </md-input-container>
+
+          </p>
+
+          
+        </form>
+      </md-card>
     </div>
+
   </div>
 
   <div [hidden]="dish">
     <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
   </div>
+
 </div>
 
