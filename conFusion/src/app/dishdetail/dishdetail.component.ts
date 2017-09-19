@@ -18,8 +18,12 @@ export class DishdetailComponent implements OnInit {
 
   dish: Dish;
   dishIds: number[];
+
+  //controlling of dish from one to another
   prev: number;
   next: number;
+
+
 
   constructor(private dishservice: DishService, private route: ActivatedRoute, private location: Location) { }
 

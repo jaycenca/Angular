@@ -38,7 +38,8 @@
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+    <!-- The purpose of the paragraph tag is to display the information after submission -->
+   <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>-->
 
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
       <p>

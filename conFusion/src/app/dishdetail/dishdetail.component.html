@@ -6,9 +6,8 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  <div fxFlex *ngIf="dish">
-    <md-grid-list cols="2" rowHeight="900px">
-      <md-grid-tile>
+  <div>
+    <div fxFlex="40" *ngIf="dish" >
         <md-card>
           <md-card-header>
             <md-card-title>
@@ -34,10 +33,9 @@
             </button>
           </md-card-actions>
         </md-card>
-      </md-grid-tile>
+    </div>
 
-
-      <md-grid-tile>
+    <div fxFlex="50" *ngIf="dish">
         <md-card>
           <md-card-header>
             <md-card-title>
@@ -46,7 +44,7 @@
           </md-card-header>
 
           <md-card-content>
-            <md-list *ngIf="dish">
+            <md-list>
               <p *ngFor="let comment of dish.comments">
                 {{comment.comment}}<br>
                 {{comment.rating}} Stars <br>
@@ -54,11 +52,8 @@
               </p>
             </md-list>
           </md-card-content>
-
         </md-card>
-      </md-grid-tile>
-
-    </md-grid-list>
+    </div>
   </div>
 
   <div [hidden]="dish">
