@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { DISHES } from '../shared/dishes';
+import { Comment } from '../shared/comment';
 
 import 'rxjs/add/operator/switchMap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -24,8 +25,8 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
 
-  feedbackForm: FormGroup;
-  Comment: Comment;
+  commentForm: FormGroup;
+  dishComment: Comment;
 
   formErrors = {
     'name' : '',
@@ -67,10 +68,19 @@ export class DishdetailComponent implements OnInit {
   }
 
   createForm() {
-    this.feedbackForm = this.fb.group({
+    this.commentForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      comment: ['', [Validators.required, Validators.minLength(2)]],
-    })
+      comment : ['', [Validators.required, Validators.minLength(2)]],
+      rating : 5,
+    });
+
+    this.commentForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+
+    //(re)set validation messages now
+    this.onValueChanged();
+
+
   }
   setPrevNext(dishId: number) {
     let index = this.dishIds.indexOf(dishId);
@@ -89,7 +99,40 @@ export class DishdetailComponent implements OnInit {
 
   }
 
+  onValueChanged(data?: any )
+  {
+    if(!this.commentForm)
+    {
+      return;
+    }
 
+    const form = this.commentForm;
+
+    for (const field in this.formErrors) {
+      //clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+
+      if( control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + '';
+        }
+      }
+    }
+  }
+
+  onSubmit()
+  {
+    this.dishComment = this.commentForm.value;
+    console.log(this.dishComment);
+    this.commentForm.reset({
+      name : '',
+      rating: 5,
+      comment : '',
+    });
+  }
 
 
 
