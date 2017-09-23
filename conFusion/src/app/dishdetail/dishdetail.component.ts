@@ -29,12 +29,12 @@ export class DishdetailComponent implements OnInit {
   dishComment: Comment;
 
   formErrors = {
-    'name' : '',
+    'author' : '',
     'comment' : '',
   }
 
   validationMessages = {
-    'name': {
+    'author': {
       'required' : 'Name is required',
       'minlength' : 'Name must be at least 2 characters long. '
     },
@@ -69,7 +69,7 @@ export class DishdetailComponent implements OnInit {
 
   createForm() {
     this.commentForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      author : ['', [Validators.required, Validators.minLength(2)]],
       comment : ['', [Validators.required, Validators.minLength(2)]],
       rating : 5,
     });
@@ -101,12 +101,18 @@ export class DishdetailComponent implements OnInit {
 
   onValueChanged(data?: any )
   {
-    if(!this.commentForm)
-    {
-      return;
+    const form=this.commentForm;
+    if (form.get('author').valid && form.get('comment').valid) {
+      this.dishComment = this.commentForm.value;
     }
-
-    const form = this.commentForm;
+    else {
+      this.dishComment = {
+        rating: 5,
+        comment: '',
+        author: '',
+        date: ''
+      };
+    }
 
     for (const field in this.formErrors) {
       //clear previous error message (if any)
@@ -126,9 +132,13 @@ export class DishdetailComponent implements OnInit {
   onSubmit()
   {
     this.dishComment = this.commentForm.value;
+    this.dishComment.date = Date();
+    this.dish.comments.push(this.dishComment);
+
+
     console.log(this.dishComment);
     this.commentForm.reset({
-      name : '',
+      author : '',
       rating: 5,
       comment : '',
     });
