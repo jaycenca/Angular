@@ -43,16 +43,15 @@
           </md-card-title>
         </md-card-header>
 
-        <md-card-content [formGroup]="commentForm">
+        <md-card-content>
           <md-list>
             <p *ngFor="let comment of dish.comments">
               {{comment.comment}}<br>
               {{comment.rating}} Stars <br>
               -- {{comment.author}} {{comment.date | date:mediumDate }}
             </p>
-
-
           </md-list>
+
         </md-card-content>
       </md-card>
 
