@@ -60,7 +60,7 @@
       <h2>Corporate Leadership</h2>
       <p *ngFor="let leader of leaders">
         <span fxFlex="10">
-          <img src={{leader.image}} alt={{leader.name}}>
+          <img src="{{BaseURL + leader.image}}" alt={{leader.name}}>
         </span>
 
         <span fxFlex="90">
