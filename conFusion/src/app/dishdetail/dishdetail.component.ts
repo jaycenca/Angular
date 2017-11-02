@@ -9,6 +9,7 @@ import { Comment } from '../shared/comment';
 
 import 'rxjs/add/operator/switchMap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {generateErrorMessage} from "codelyzer/angular/styles/cssLexer";
 
 @Component({
   selector: 'app-dishdetail',
@@ -26,6 +27,9 @@ export class DishdetailComponent implements OnInit {
 
   commentForm: FormGroup;
   dishComment: Comment;
+
+  //Error Handling for communication with the server 
+  errMess: string;
 
   formErrors = {
     'author' : '',
@@ -46,8 +50,6 @@ export class DishdetailComponent implements OnInit {
   }
 
 
-
-
   constructor(private dishservice: DishService,
               private route: ActivatedRoute,
               private location: Location,
@@ -58,14 +60,15 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit() {
     this.dishservice.getDishIds()
-      .subscribe(dishIds => this.dishIds = dishIds);
+      .subscribe(dishIds => this.dishIds = dishIds,
+      );
 
-    this.route.params.
-    switchMap((params: Params) => this.dishservice.getDish(+params['id']))
+    this.route.params
+      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
       .subscribe(dish => {
         this.dish = dish;
         this.setPrevNext(dish.id);
-      });
+      }, errMess => this.errMess = <any>errMess);
 
 
   }
