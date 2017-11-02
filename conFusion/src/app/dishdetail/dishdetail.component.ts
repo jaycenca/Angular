@@ -28,7 +28,7 @@ export class DishdetailComponent implements OnInit {
   commentForm: FormGroup;
   dishComment: Comment;
 
-  //Error Handling for communication with the server 
+  //Error Handling for communication with the server
   errMess: string;
 
   formErrors = {
