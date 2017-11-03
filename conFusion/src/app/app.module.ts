@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import 'hammerjs';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { LeaderService} from "./services/leader.service";
 import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+import { RestangularConfigFactory } from './shared/restConfig';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory),
+
   ],
   providers: [ DishService,
     PromotionService,
