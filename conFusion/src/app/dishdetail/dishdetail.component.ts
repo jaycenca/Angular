@@ -19,6 +19,7 @@ import {generateErrorMessage} from "codelyzer/angular/styles/cssLexer";
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
+  dishcopy = null;
   dishIds: number[];
 
   //controlling of dish from one to another
@@ -67,6 +68,7 @@ export class DishdetailComponent implements OnInit {
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
       .subscribe(dish => {
         this.dish = dish;
+        this.dishcopy = dish;
         this.setPrevNext(dish.id);
       }, errMess => this.errMess = <any>errMess);
 
@@ -138,8 +140,17 @@ export class DishdetailComponent implements OnInit {
   onSubmit()
   {
     this.dishComment = this.commentForm.value;
-    this.dishComment.date = Date();
-    this.dish.comments.push(this.dishComment);
+    this.dishComment.date = new Date().toISOString();
+    console.log(this.dishComment);
+    this.dishcopy.comments.push(this.dishComment);
+    this.dishcopy.save()
+      .subscribe(dish => this.dish = dish);
+    this.commentForm.reset({
+      author: '',
+      rating: 5,
+      comment: '',
+    })
+
 
 
     console.log(this.dishComment);
