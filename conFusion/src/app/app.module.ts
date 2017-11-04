@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 import { RestangularConfigFactory } from './shared/restConfig';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { RestangularConfigFactory } from './shared/restConfig';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
