@@ -7,14 +7,29 @@ import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Comment } from '../shared/comment';
 
+import { trigger, state, animate, transition, style } from '@angular/animations';
+
 import 'rxjs/add/operator/switchMap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {generateErrorMessage} from "codelyzer/angular/styles/cssLexer";
+
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+    trigger('visibility', [
+      state('shown', style({
+        transform: 'scale(1)',
+        opacity: 1
+      })),
+      state('hidden', style({
+        transform: 'scale(.5)',
+        opacity: 0
+      })),
+      transition('* => *', animate('0.5s ease-in'))
+    ])
+  ],
 })
 export class DishdetailComponent implements OnInit {
 
@@ -31,6 +46,9 @@ export class DishdetailComponent implements OnInit {
 
   //Error Handling for communication with the server
   errMess: string;
+
+  //animation
+  visibility = 'shown';
 
   formErrors = {
     'author' : '',
@@ -65,12 +83,13 @@ export class DishdetailComponent implements OnInit {
       );
 
     this.route.params
-      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
+      .switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishservice.getDish(+params['id']) })
       .subscribe(dish => {
         this.dish = dish;
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
-      }, errMess => this.errMess = <any>errMess);
+        this.visibility = 'shown';
+      }, errMess => { this.dish = null; this.errMess = <any>errMess});
 
 
   }
