@@ -55,7 +55,7 @@
 
 
 
-  <div fxFlex *ngIf="leaders">
+  <div fxFlex *ngIf="leaders" [@expand]>
     <div fxLayout="row" fxLayout.gt-sm="column">
       <h2>Corporate Leadership</h2>
       <p *ngFor="let leader of leaders">
