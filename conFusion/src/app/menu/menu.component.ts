@@ -10,7 +10,7 @@ import { flyInOut , expand } from '../animations/app.animation';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   host: {
-    '[@flyInOut()]': 'true',
+    '[@flyInOut]': 'true',
     'style': 'display: block;'
   },
   animations: [

@@ -140,7 +140,7 @@ export class DishdetailComponent implements OnInit {
       this.formErrors[field] = '';
       const control = form.get(field);
 
-      if( control && control.dirty && !control.valid) {
+      if(control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
 
         for (const key in control.errors) {
@@ -154,24 +154,20 @@ export class DishdetailComponent implements OnInit {
   {
     this.dishComment = this.commentForm.value;
     this.dishComment.date = new Date().toISOString();
-    console.log(this.dishComment);
+
     this.dishcopy.comments.push(this.dishComment);
-    this.dishcopy.save()
-      .subscribe(dish => this.dish = dish);
+
+    //the following display the message, which repeat
+    /*this.dishcopy.save()
+      .subscribe(dish => this.dish = dish);*/
+
+    //console.log(this.dishComment);
     this.commentForm.reset({
       author: '',
       rating: 5,
       comment: '',
     })
 
-
-
-    console.log(this.dishComment);
-    this.commentForm.reset({
-      author : '',
-      rating: 5,
-      comment : '',
-    });
   }
 
 

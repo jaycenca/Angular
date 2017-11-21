@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/@angular/material/typings/dialog/dialog-ref.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef } from '@angular/material';

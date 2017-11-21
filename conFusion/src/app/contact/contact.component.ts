@@ -10,7 +10,7 @@ import {flyInOut} from "../animations/app.animation";
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   host: {
-    '[@flyInOut()]': 'true',
+    '[@flyInOut]': 'true',
     'style': 'display: block;'
   },
   animations: [
