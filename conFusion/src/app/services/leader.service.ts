@@ -35,7 +35,7 @@ export class LeaderService {
 
   getLeaderIds(): Observable<number[]> {
     return this.getLeaders()
-      .map(dishes => {return dishes.map(dish => dish.id)})
-      .catch(error => {return error;});
+      .map(dishes => 
+        {return dishes.map(dish => dish.id)});
   }
 }

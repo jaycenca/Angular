@@ -8,7 +8,7 @@ import { DishService } from '../services/dish.service';
 import { Comment } from '../shared/comment';
 
 import 'rxjs/add/operator/switchMap';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { visibility , flyInOut , expand } from '../animations/app.animation';
 
 @Component({
@@ -73,7 +73,7 @@ export class DishdetailComponent implements OnInit {
 
   ngOnInit() {
     this.dishservice.getDishIds()
-      .subscribe(dishIds => this.dishIds = dishIds,
+      .subscribe(dishIds => this.dishIds = dishIds
       );
 
     this.route.params

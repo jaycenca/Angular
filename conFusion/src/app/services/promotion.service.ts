@@ -37,7 +37,6 @@ export class PromotionService {
 
   getPromotionIds(): Observable<number[]> {
     return this.getPromotions()
-      .map(promotions => { return promotions.map(promotion => promotion.id)})
-      .catch(error => { return error;});
+      .map(promotions => { return promotions.map(promotion => promotion.id)});
   }
 }
