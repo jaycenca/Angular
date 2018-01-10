@@ -16,7 +16,7 @@ import { visibility , flyInOut , expand } from '../animations/app.animation';
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   host: {
-    '[@flyInOut()]': 'true',
+    '[@flyInOut]': 'true',
     'style': 'display: block;'
   },
   animations: [
