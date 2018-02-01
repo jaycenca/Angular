@@ -63,6 +63,7 @@ export class DishdetailComponent implements OnInit {
   }
 
 
+  //binding all the necessary components
   constructor(private dishservice: DishService,
               private route: ActivatedRoute,
               private location: Location,
@@ -72,10 +73,12 @@ export class DishdetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    //stores all the dishes's id in the array of number (dishIds)
     this.dishservice.getDishIds()
       .subscribe(dishIds => this.dishIds = dishIds
       );
 
+    //use router function
     this.route.params
       .switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishservice.getDish(+params['id']) })
       .subscribe(dish => {
@@ -83,7 +86,8 @@ export class DishdetailComponent implements OnInit {
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
         this.visibility = 'shown';
-      }, errMess => { this.dish = null; this.errMess = <any>errMess});
+      }, 
+      errMess => { this.dish = null; this.errMess = <any>errMess});
 
 
   }
@@ -157,9 +161,9 @@ export class DishdetailComponent implements OnInit {
 
     this.dishcopy.comments.push(this.dishComment);
 
-    //the following display the message, which repeat
-    /*this.dishcopy.save()
-      .subscribe(dish => this.dish = dish);*/
+    //the following display the message
+    this.dishcopy.save()
+      .subscribe(dish => this.dish = dish);
 
     //console.log(this.dishComment);
     this.commentForm.reset({
